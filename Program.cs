@@ -1,4 +1,9 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using CambiosTallerMVCJuanAraujo.Data;
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<CambiosTallerMVCJuanAraujoContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("CambiosTallerMVCJuanAraujoContext") ?? throw new InvalidOperationException("Connection string 'CambiosTallerMVCJuanAraujoContext' not found.")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
